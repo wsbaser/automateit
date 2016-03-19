@@ -1,9 +1,8 @@
 ﻿using System;
 using selenium.core.Exceptions;
 using selenium.core.Framework.Page;
-using selenium.core.Framework.Browser;
 
-namespace selenium.widgets_ui_3._0.tests
+namespace selenium.widgets_ui_3._0.tests.@base
 {
     public abstract class PageTestBase<P> : TestBase where P : IPage
     {

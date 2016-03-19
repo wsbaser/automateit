@@ -4,9 +4,8 @@
 
 using System.Collections.Generic;
 using selenium.core.Framework.Service;
-using selenium.widgets_ui_3._0.service;
 
-namespace selenium.beeline.Pages.Base
+namespace selenium.widgets_ui_3._0.service
 {
     public class WidgetsServiceFactory : ServiceFactory
     {

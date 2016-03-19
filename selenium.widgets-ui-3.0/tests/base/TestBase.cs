@@ -3,7 +3,7 @@ using selenium.core.Framework.Browser;
 using selenium.core.Framework.Page;
 using selenium.core.Logging;
 
-namespace selenium.widgets_ui_3._0.tests
+namespace selenium.widgets_ui_3._0.tests.@base
 {
     public abstract class TestBase
     {

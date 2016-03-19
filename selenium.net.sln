@@ -16,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "selenium.core.tests", "sele
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "core", "core\core.csproj", "{F04B3CF0-797A-4515-BA27-79787ABC66B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "selenium.widgets-ui-3.0", "selenium.widgets-ui-3.0\selenium.widgets-ui-3.0.csproj", "{7F9A22FA-DFF6-43EF-98CB-7F40DCBA9191}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "selenium.widget-3", "selenium.widgets-ui-3.0\selenium.widget-3.csproj", "{7F9A22FA-DFF6-43EF-98CB-7F40DCBA9191}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
