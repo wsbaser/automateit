@@ -4,8 +4,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Threading;
 using OpenQA.Selenium;
@@ -83,7 +81,7 @@ namespace selenium.core.Framework.Browser {
         }
 
         public void Click(IWebElement element, int sleepTimeout = 0) {
-            Browser.Js.ScrollIntoView(element); // Fix for "element not visible" exception
+            //Browser.Js.ScrollIntoView(element); // Fix for "element not visible" exception
             element.Click();
             if (sleepTimeout != 0)
                 Thread.Sleep(sleepTimeout);
@@ -253,13 +251,14 @@ namespace selenium.core.Framework.Browser {
         /// </summary>
         /// <param name="marker">название файла скриншота</param>
         /// <param name="folder">папка для скриншотов</param>
-        public void SaveScreenshot(string marker = null, string folder = "d:\\") {
-            Bitmap screenshot = Browser.Get.Screenshot();
-            string filename = string.IsNullOrEmpty(marker) ? new Random().Next(100000).ToString() : marker;
-            string screenshotFilePath = Path.Combine(folder, filename + ".png");
-            screenshot.Save(screenshotFilePath, ImageFormat.Png);
-            Console.WriteLine("Screenshot: {0}", new Uri(screenshotFilePath));
-        }
+//        public void SaveScreenshot(string marker = null, string folder = "d:\\") {
+//            Bitmap screenshot = Browser.Get.Screenshot();
+//            string filename = string.IsNullOrEmpty(marker) ? new Random().Next(100000).ToString() : marker;
+//            string screenshotFilePath = Path.Combine(folder, filename + ".png");
+//            screenshot.Save(screenshotFilePath, ImageFormat.Png);
+//            Console.WriteLine("Screenshot: {0}", new Uri(screenshotFilePath));
+//        }
+        // TODO: uncomment after Bitmap is available in .NET CORE
 
         /// <summary>
         /// Навести курсор на элемент

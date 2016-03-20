@@ -1,9 +1,9 @@
 ﻿using selenium.core.Framework.Browser;
 using selenium.core.Framework.Page;
 using selenium.core.Logging;
-using selenium.widgets_ui_3._0.service.pages;
+using selenium.widget.v3.service.pages;
 
-namespace selenium.widgets_ui_3._0.tests.@base
+namespace selenium.widget.v3.tests.@base
 {
     public abstract class PageWithWidgetTestBase<P> : PageTestBase<P> where P : IPage
     {
@@ -26,19 +26,19 @@ namespace selenium.widgets_ui_3._0.tests.@base
             get { return WidgetSeleniumContext.Inst.Browser; }
         }
 
-        protected override TestLogger Log
+        protected override ITestLogger Log
         {
             get { return WidgetSeleniumContext.Inst.Log; }
         }
 
-        public WidgetPage GoToPageWithWidget(int siteId)
+        public PageWithWidget GoToPageWithWidget(int siteId)
         {
             // . navigate to page
-            var page = Go.ToPage<WidgetPage>();
+            var page = Go.ToPage<PageWithWidget>();
             // . inject livetex site code
             Js.Excecute(LIVETEX_SITE_CODE, siteId);
             // . wait for widget is visible
-            page.Widget.WaitForVisible();
+            page.WidgetLabel.WaitForVisible();
             return page;
         }
     }

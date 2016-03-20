@@ -5,7 +5,7 @@ using selenium.core.Logging;
 namespace selenium.core {
     public interface ISeleniumContext {
         Web Web { get; }
-        TestLogger Log { get; }
+        ITestLogger Log { get; }
         Browser Browser { get; }
     }
 }

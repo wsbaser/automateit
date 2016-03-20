@@ -25,9 +25,9 @@ namespace selenium.core.Framework.Browser {
         /// <summary>
         /// Прокрутить скролбарр по Y чтобы элемент стал видим
         /// </summary>
-        public void ScrollIntoView(IWebElement element) {
-            Excecute("window.scrollTo(0, {0});", element.Location.Y);
-        }
+//        public void ScrollIntoView(IWebElement element) {
+//            Excecute("window.scrollTo(0, {0});", element.Location.Y);
+//        }
 
         /// <summary>
         /// Получить обработчики события для указанного элемента

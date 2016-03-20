@@ -2,7 +2,7 @@
 using selenium.core.Exceptions;
 using selenium.core.Framework.Page;
 
-namespace selenium.widgets_ui_3._0.tests.@base
+namespace selenium.widget.v3.tests.@base
 {
     public abstract class PageTestBase<P> : TestBase where P : IPage
     {

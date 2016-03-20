@@ -4,13 +4,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
 using System.Linq;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using core.Extensions;
-using selenium.core.Auxiliary;
 using selenium.core.SCSS;
 
 namespace selenium.core.Framework.Browser {
@@ -268,107 +264,110 @@ namespace selenium.core.Framework.Browser {
         /// <summary>
         /// Сделать скриншот указанной области экрана
         /// </summary>
-        public Bitmap Screenshot() {
-            Browser.Js.ScrollToTop();
-            // Get the Total Size of the Document
-            int totalWidth = (int)Browser.Js.Excecute<long>("return document.documentElement.scrollWidth");
-            int totalHeight = (int)Browser.Js.Excecute<long>("return document.documentElement.scrollHeight");
-            
-            // Get the Size of the Viewport
-            int viewportWidth = (int) Browser.Js.Excecute<long>("return document.documentElement.clientWidth");
-            int viewportHeight = (int) Browser.Js.Excecute<long>("return document.documentElement.clientHeight");
-
-            // Split the Screen in multiple Rectangles
-            var rectangles = new List<Rectangle>();
-            // Loop until the Total Height is reached
-            for (int i = 0; i < totalHeight; i += viewportHeight) {
-                int newHeight = viewportHeight;
-                // Fix if the Height of the Element is too big
-                if (i + viewportHeight > totalHeight) {
-                    newHeight = totalHeight - i;
-                }
-                // Loop until the Total Width is reached
-                for (int ii = 0; ii < totalWidth; ii += viewportWidth) {
-                    int newWidth = viewportWidth;
-                    // Fix if the Width of the Element is too big
-                    if (ii + viewportWidth > totalWidth) {
-                        newWidth = totalWidth - ii;
-                    }
-
-                    // Create and add the Rectangle
-                    Rectangle currRect = new Rectangle(ii, i, newWidth, newHeight);
-                    rectangles.Add(currRect);
-                }
-            }
-
-            // Build the Image
-            var stitchedImage = new Bitmap(totalWidth, totalHeight);
-            // Get all Screenshots and stitch them together
-            Rectangle previous = Rectangle.Empty;
-            foreach (var rectangle in rectangles) {
-                // Calculate the Scrolling (if needed)
-                if (previous != Rectangle.Empty) {
-                    int xDiff = rectangle.Right - previous.Right;
-                    int yDiff = rectangle.Bottom - previous.Bottom;
-                    // Scroll
-                    Browser.Js.Excecute("window.scrollBy({0}, {1})", xDiff, yDiff);
-                    System.Threading.Thread.Sleep(200);
-                }
-
-                // Take Screenshot
-                var screenshot = ((ITakesScreenshot) Driver).GetScreenshot();
-
-                // Build an Image out of the Screenshot
-                Image screenshotImage;
-                using (MemoryStream memStream = new MemoryStream(screenshot.AsByteArray)) {
-                    screenshotImage = Image.FromStream(memStream);
-                }
-
-                // Calculate the Source Rectangle
-                Rectangle sourceRectangle = new Rectangle(viewportWidth - rectangle.Width,
-                                                          viewportHeight - rectangle.Height, rectangle.Width,
-                                                          rectangle.Height);
-
-                // Copy the Image
-                using (Graphics g = Graphics.FromImage(stitchedImage)) {
-                    g.DrawImage(screenshotImage, rectangle, sourceRectangle, GraphicsUnit.Pixel);
-                }
-
-                // Set the Previous Rectangle
-                previous = rectangle;
-            }
-            // The full Screenshot is now in the Variable "stitchedImage"
-            return stitchedImage;
-        }
-
+//        public Bitmap Screenshot() {
+//            Browser.Js.ScrollToTop();
+//            // Get the Total Size of the Document
+//            int totalWidth = (int)Browser.Js.Excecute<long>("return document.documentElement.scrollWidth");
+//            int totalHeight = (int)Browser.Js.Excecute<long>("return document.documentElement.scrollHeight");
+//            
+//            // Get the Size of the Viewport
+//            int viewportWidth = (int) Browser.Js.Excecute<long>("return document.documentElement.clientWidth");
+//            int viewportHeight = (int) Browser.Js.Excecute<long>("return document.documentElement.clientHeight");
+//
+//            // Split the Screen in multiple Rectangles
+//            var rectangles = new List<Rectangle>();
+//            // Loop until the Total Height is reached
+//            for (int i = 0; i < totalHeight; i += viewportHeight) {
+//                int newHeight = viewportHeight;
+//                // Fix if the Height of the Element is too big
+//                if (i + viewportHeight > totalHeight) {
+//                    newHeight = totalHeight - i;
+//                }
+//                // Loop until the Total Width is reached
+//                for (int ii = 0; ii < totalWidth; ii += viewportWidth) {
+//                    int newWidth = viewportWidth;
+//                    // Fix if the Width of the Element is too big
+//                    if (ii + viewportWidth > totalWidth) {
+//                        newWidth = totalWidth - ii;
+//                    }
+//
+//                    // Create and add the Rectangle
+//                    Rectangle currRect = new Rectangle(ii, i, newWidth, newHeight);
+//                    rectangles.Add(currRect);
+//                }
+//            }
+//
+//            // Build the Image
+//            var stitchedImage = new Bitmap(totalWidth, totalHeight);
+//            // Get all Screenshots and stitch them together
+//            Rectangle previous = Rectangle.Empty;
+//            foreach (var rectangle in rectangles) {
+//                // Calculate the Scrolling (if needed)
+//                if (previous != Rectangle.Empty) {
+//                    int xDiff = rectangle.Right - previous.Right;
+//                    int yDiff = rectangle.Bottom - previous.Bottom;
+//                    // Scroll
+//                    Browser.Js.Excecute("window.scrollBy({0}, {1})", xDiff, yDiff);
+//                    System.Threading.Thread.Sleep(200);
+//                }
+//
+//                // Take Screenshot
+//                var screenshot = ((ITakesScreenshot) Driver).GetScreenshot();
+//
+//                // Build an Image out of the Screenshot
+//                Image screenshotImage;
+//                using (MemoryStream memStream = new MemoryStream(screenshot.AsByteArray)) {
+//                    screenshotImage = Image.FromStream(memStream);
+//                }
+//
+//                // Calculate the Source Rectangle
+//                Rectangle sourceRectangle = new Rectangle(viewportWidth - rectangle.Width,
+//                                                          viewportHeight - rectangle.Height, rectangle.Width,
+//                                                          rectangle.Height);
+//
+//                // Copy the Image
+//                using (Graphics g = Graphics.FromImage(stitchedImage)) {
+//                    g.DrawImage(screenshotImage, rectangle, sourceRectangle, GraphicsUnit.Pixel);
+//                }
+//
+//                // Set the Previous Rectangle
+//                previous = rectangle;
+//            }
+//            // The full Screenshot is now in the Variable "stitchedImage"
+//            return stitchedImage;
+//        }
+    // TODO: update after Drawing namespace is available in .NET CORE
         /// <summary>
         /// Получить прямоугольник, заданный Css свойствами элемента left, top, height, width
         /// </summary>
-        public Rectangle Bounds(string scssSelector) {
-            return Bounds(ScssBuilder.CreateBy(scssSelector));
-        }
+//        public Rectangle Bounds(string scssSelector) {
+//            return Bounds(ScssBuilder.CreateBy(scssSelector));
+//        }
 
-        public Rectangle Bounds(By by) {
-            return RepeatAfterStale(() => Bounds(Browser.Find.Element(by)));
-        }
+//        public Rectangle Bounds(By by) {
+//            return RepeatAfterStale(() => Bounds(Browser.Find.Element(by)));
+//        }
 
-        /// <summary>
-        /// Получить границы элемента
-        /// </summary>
-        public Rectangle Bounds(IWebElement element) {
-            return new Rectangle(CssValue<int>(element, ECssProperty.left),
-                                 CssValue<int>(element, ECssProperty.top),
-                                 CssValue<int>(element, ECssProperty.width),
-                                 CssValue<int>(element, ECssProperty.height));
-        }
+        //        /// <summary>
+        //        /// Получить границы элемента
+        //        /// </summary>
+        //        public Rectangle Bounds(IWebElement element) {
+        //            return new Rectangle(CssValue<int>(element, ECssProperty.left),
+        //                                 CssValue<int>(element, ECssProperty.top),
+        //                                 CssValue<int>(element, ECssProperty.width),
+        //                                 CssValue<int>(element, ECssProperty.height));
+        //        }
+        // TODO: uncomment after implemented in .Net Core
+
 
         /// <summary>
         /// Получить координаты элемента
         /// </summary>
-        public Point Point(IWebElement element) {
-            return new Point(CssValue<int>(element, ECssProperty.left),
-                             CssValue<int>(element, ECssProperty.top));
-        }
+        //        public Point Point(IWebElement element) {
+        //            return new Point(CssValue<int>(element, ECssProperty.left),
+        //                             CssValue<int>(element, ECssProperty.top));
+        //        }
+        // TODO: uncomment after implemented in .Net Core
 
         /// <summary>
         /// Получить значение указанного типа из найденного по селектору элементу

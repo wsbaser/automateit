@@ -1,5 +1,4 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
+using NUnit.Framework;
 using selenium.core.Framework.Page;
 using selenium.core.SCSS;
 

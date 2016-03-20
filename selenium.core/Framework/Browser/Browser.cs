@@ -24,7 +24,7 @@ namespace selenium.core.Framework.Browser {
         public BrowserWindow Window;
         public BrowserCookies Cookies;
 
-        public Browser(Web web, TestLogger log, DriverManager driverManager) {
+        public Browser(Web web, ITestLogger log, DriverManager driverManager) {
             Web = web;
             Log = log;
             _driverManager = driverManager;
@@ -43,7 +43,7 @@ namespace selenium.core.Framework.Browser {
             Cookies = new BrowserCookies(this);
         }
 
-        public TestLogger Log { get; private set; }
+        public ITestLogger Log { get; private set; }
         public Web Web { get; private set; }
         public IWebDriver Driver { get; private set; }
 
@@ -72,7 +72,7 @@ namespace selenium.core.Framework.Browser {
         }
     }
 
-    public class BrowserOptions : ICloneable {
+    public class BrowserOptions{
         /// <summary>
         /// Если при поиске элемента по селектору найдено несколько кидать исключение
         /// </summary>

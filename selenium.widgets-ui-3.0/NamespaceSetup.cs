@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
-namespace selenium.widgets_ui_3._0
+
+namespace selenium.widget.v3
 {
     [SetUpFixture]
     public class NamespaceSetup

@@ -18,6 +18,11 @@ namespace selenium.core.Framework.Page {
             throw new NotImplementedException();
         }
 
+        public void SetAuthenticationCredentials(string userName, string password)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual string Text {
             get { return GetType().Name; }
         }

@@ -19,7 +19,7 @@ namespace selenium.core.Framework.Browser {
             get { return Browser.Web; }
         }
 
-        protected TestLogger Log {
+        protected ITestLogger Log {
             get { return Browser.Log; }
         }
 

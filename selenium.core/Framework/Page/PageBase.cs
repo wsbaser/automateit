@@ -13,7 +13,7 @@ namespace selenium.core.Framework.Page {
     public abstract class PageBase : IPage {
         public Browser.Browser Browser { get; private set; }
 
-        public TestLogger Log { get; private set; }
+        public ITestLogger Log { get; private set; }
 
         public BrowserAction Action {
             get { return Browser.Action; }
@@ -67,7 +67,7 @@ namespace selenium.core.Framework.Page {
         /// <remarks>
         /// Если страница активна, значит через нее можно работать с браузером
         /// </remarks>
-        public void Activate(Browser.Browser browser, TestLogger log) {
+        public void Activate(Browser.Browser browser, ITestLogger log) {
             Browser = browser;
             Log = log;
             Alerts = new List<IHtmlAlert>();

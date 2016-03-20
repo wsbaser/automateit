@@ -4,8 +4,9 @@
 
 using System.Collections.Generic;
 using selenium.core.Framework.Service;
+using selenium.widget.v3.service.pages;
 
-namespace selenium.widgets_ui_3._0.service
+namespace selenium.widget.v3.service
 {
     public class WidgetsServiceFactory : ServiceFactory
     {
@@ -16,7 +17,7 @@ namespace selenium.widgets_ui_3._0.service
         public Router createRouter()
         {
             var router = new SelfMatchingPagesRouter();
-            router.RegisterDerivedPages<PageWithWidgetBase>();
+            router.RegisterPage<PageWithWidget>();  // RegisterDerivedPages<PageWithWidget>();
             return router;
         }
 

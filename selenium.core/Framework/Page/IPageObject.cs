@@ -8,7 +8,7 @@ using selenium.core.Logging;
 namespace selenium.core.Framework.Page {
     public interface IPageObject {
         Browser.Browser Browser { get; }
-        TestLogger Log { get; }
+        ITestLogger Log { get; }
 
         BrowserAction Action { get; }
         BrowserAlert Alert { get; }

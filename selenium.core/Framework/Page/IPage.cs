@@ -55,6 +55,6 @@ namespace selenium.core.Framework.Page {
         /// <summary>
         /// Активизировать страницу
         /// </summary>
-        void Activate(Browser.Browser browser, TestLogger log);
+        void Activate(Browser.Browser browser, ITestLogger log);
     }
 }

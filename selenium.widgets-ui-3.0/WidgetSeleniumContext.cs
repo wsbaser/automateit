@@ -1,8 +1,8 @@
 ﻿using selenium.core;
 using selenium.core.Framework.Service;
-using selenium.widgets_ui_3._0.service;
+using selenium.widget.v3.service;
 
-namespace selenium.widgets_ui_3._0
+namespace selenium.widget.v3
 {
     public class WidgetSeleniumContext : SeleniumContext<WidgetSeleniumContext>
     {

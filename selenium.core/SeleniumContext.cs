@@ -13,7 +13,7 @@ namespace selenium.core {
         private readonly BrowsersCache _browsersCache;
 
         protected SeleniumContext() {
-            Log = new TestLoggerImpl();
+            Log = new TestLogger();
             Web = new Web();
             _browsersCache = new BrowsersCache(Web, Log);
         }
@@ -26,7 +26,7 @@ namespace selenium.core {
 
         public Web Web { get; private set; }
 
-        public TestLogger Log { get; private set; }
+        public ITestLogger Log { get; private set; }
 
         public Browser Browser {
             get { return _browsersCache.GetBrowser(BrowserType.CHROME); }

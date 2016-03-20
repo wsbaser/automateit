@@ -1,5 +1,5 @@
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using selenium.core.Framework.Browser;
 
 namespace selenium.core.Tests {
@@ -13,7 +13,7 @@ namespace selenium.core.Tests {
                 action.Invoke();
             }
             catch (Exception e) {
-                throw new AssertFailedException(string.Format(msg, args), e);
+                throw new AssertionException(string.Format(msg, args), e);
             }
         }
 

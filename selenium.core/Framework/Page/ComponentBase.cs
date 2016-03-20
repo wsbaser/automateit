@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using selenium.core.Exceptions;
 using selenium.core.Framework.Browser;
 using selenium.core.Logging;
@@ -29,7 +29,7 @@ namespace selenium.core.Framework.Page {
             get { return ParentPage.Browser; }
         }
 
-        public TestLogger Log {
+        public ITestLogger Log {
             get { return ParentPage.Log; }
         }
 

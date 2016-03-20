@@ -1,7 +1,5 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using selenium.core.Exceptions;
 using selenium.core.Framework.Page;
 using selenium.core.TestData;
 

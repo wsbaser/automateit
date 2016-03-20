@@ -1,6 +1,6 @@
 ﻿using selenium.core.Framework.Service;
 
-namespace selenium.widgets_ui_3._0.service
+namespace selenium.widget.v3.service
 {
     internal class WidgetService : ServiceImpl
     {

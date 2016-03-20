@@ -4,8 +4,6 @@
 
 using System;
 using System.IO;
-using selenium.core.Auxiliary;
-using selenium.core.Exceptions;
 using selenium.core.Framework.Page;
 using selenium.core.Framework.Service;
 
@@ -49,7 +47,7 @@ namespace selenium.core.Framework.Browser {
             // Сохраниить на диск
             var type = typeof (T);
             string fileName = type.Name + ".html";
-            string pagesFolder = Path.Combine(Environment.CurrentDirectory, "SavedPages");
+            string pagesFolder = Path.Combine(Directory.GetCurrentDirectory(), "SavedPages");
             if (!Directory.Exists(pagesFolder))
                 Directory.CreateDirectory(pagesFolder);
             string filePath = Path.Combine(pagesFolder, fileName);
@@ -68,12 +66,12 @@ namespace selenium.core.Framework.Browser {
         /// Найти письмо с указанным заголовком на указанном почтовом ящике.
         /// Открыть текст письма в браузере
         /// </summary>
-        public P ToEmail<P>(string email, string titlePattern) where P : IPage {
-            string messageBody = MailHelper.GetMessage(email, titlePattern);
-            if (string.IsNullOrEmpty(messageBody))
-                Throw.FrameworkException("На '{0}' не пришло письмо активации");
-            return Browser.Go.ToHtml<P>(messageBody);
-        }
+//        public P ToEmail<P>(string email, string titlePattern) where P : IPage {
+//            string messageBody = MailHelper.GetMessage(email, titlePattern);
+//            if (string.IsNullOrEmpty(messageBody))
+//                Throw.FrameworkException("На '{0}' не пришло письмо активации");
+//            return Browser.Go.ToHtml<P>(messageBody);
+//        }
 
         /// <summary>
         /// Вернуться на предыдущую страницу

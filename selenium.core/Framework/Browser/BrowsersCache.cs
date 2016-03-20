@@ -9,10 +9,10 @@ using selenium.core.Logging;
 namespace selenium.core.Framework.Browser {
     public class BrowsersCache {
         private readonly Dictionary<BrowserType, Browser> _browsers;
-        private readonly TestLogger _log;
+        private readonly ITestLogger _log;
         private readonly Web _web;
 
-        public BrowsersCache(Web web, TestLogger log) {
+        public BrowsersCache(Web web, ITestLogger log) {
             _web = web;
             _log = log;
             _browsers = new Dictionary<BrowserType, Browser>();
