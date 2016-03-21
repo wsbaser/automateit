@@ -31,19 +31,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.2.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.2.0\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
     <Reference Include="WebDriver, Version=2.40.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Selenium.WebDriver.2.40.0\lib\net40\WebDriver.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="websocket-sharp, Version=1.0.2.36589, Culture=neutral, PublicKeyToken=5660b08a1845a91e, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebSocketSharp.1.0.3-rc9\lib\websocket-sharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NamespaceSetup.cs" />
+    <Compile Include="api\ChatServer\Balancer.cs" />
+    <Compile Include="api\ChatServer\Operator.cs" />
+    <Compile Include="tests\NamespaceSetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="service\pages\LivetexWidgetLabel.cs" />
     <Compile Include="service\pages\PageWithWidget.cs" />
@@ -51,7 +62,7 @@
     <Compile Include="tests\base\PageTestBase.cs" />
     <Compile Include="tests\base\PageWithWidgetTestBase.cs" />
     <Compile Include="tests\base\TestBase.cs" />
-    <Compile Include="tests\Mother.cs" />
+    <Compile Include="mother\Mother.cs" />
     <Compile Include="tests\MyFirstTest.cs" />
     <Compile Include="WidgetSeleniumContext.cs" />
     <Compile Include="service\WidgetServiceFactory.cs" />
@@ -60,6 +71,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="api\EmployeeApi\" />
     <Folder Include="service\components\" />
   </ItemGroup>
   <ItemGroup>
