@@ -21,11 +21,10 @@ namespace selenium.core.Logging
         static TestLogger()
         {
             const string CONFIG_FILE_NAME = "nlog.config";
-            //            string buildCheckoutDir = Environment.GetEnvironmentVariable("BuildCheckoutDir");
-            //            string baseDirectory = string.IsNullOrEmpty(buildCheckoutDir)
-            //                ? AppDomain.CurrentDomain.BaseDirectory
-            //                : buildCheckoutDir;
-            string baseDirectory = "";  // TODO:  AppDomain.CurrentDomain.BaseDirectory=>System.AppContext.BaseDirectory
+            string buildCheckoutDir = Environment.GetEnvironmentVariable("BuildCheckoutDir");
+            string baseDirectory = string.IsNullOrEmpty(buildCheckoutDir)
+                ? AppContext.BaseDirectory
+                : buildCheckoutDir;
             string configFilePath = Path.Combine(baseDirectory, CONFIG_FILE_NAME);
             LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
             Log = LogManager.GetLogger("TestLogger");

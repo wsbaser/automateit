@@ -17,7 +17,7 @@ namespace selenium.widget.v3.tests
             //        offlineHelper.setOfflineContactType(CONTACT_EMAIL_AND_PHONE, REQUIRED_EMAIL);
         }
 
-        [TestCaseSource(typeof(Mother),"INVALID_EMAILS")]
+        [Test, TestCaseSource(typeof (Mother), "VALID_EMAILS")]
         public void SendValidEmail(string email)
         {
             // . Arrange
@@ -25,13 +25,13 @@ namespace selenium.widget.v3.tests
             // . Act
             //page.WidgetLabel
             // . Assert
-//            label.clickLabel();
-//            widget.fillName(NAME)
-//                .fillEmail(email)
-//                .fillPhone(PHONE)
-//                .fillMessage(MESSAGE)
-//                .send();
-//            Assert.assertEquals(OFFLINE_SUCCESS_MESSAGE, offline.getOfflineSentMessage());
+            //            label.clickLabel();
+            //            widget.fillName(NAME)
+            //                .fillEmail(email)
+            //                .fillPhone(PHONE)
+            //                .fillMessage(MESSAGE)
+            //                .send();
+            //            Assert.assertEquals(OFFLINE_SUCCESS_MESSAGE, offline.getOfflineSentMessage());
         }
     }
 }

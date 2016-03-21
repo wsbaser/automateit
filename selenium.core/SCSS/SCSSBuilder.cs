@@ -505,7 +505,7 @@ namespace selenium.core.SCSS {
         public void ConvertScssToXpath(string scssSelector, string result) {
             Scss scss = ScssBuilder.Create(scssSelector);
             Assert.AreEqual(result, scss.Xpath);
-            Assert.IsNullOrEmpty(scss.Css);
+            Assert.IsEmpty(scss.Css);
         }
 
         [TestCase("#myid", "#myid")]
@@ -525,7 +525,7 @@ namespace selenium.core.SCSS {
         public void ConvertScssToCss(string scssSelector, string result) {
             Scss scss = ScssBuilder.Create(scssSelector);
             Assert.AreEqual(result, scss.Css);
-            Assert.IsNotNullOrEmpty(scss.Xpath);
+            Assert.IsEmpty(scss.Xpath);
         }
     }
 }
