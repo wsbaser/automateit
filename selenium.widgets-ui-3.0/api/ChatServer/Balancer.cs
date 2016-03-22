@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Net;
+using System.Text;
+using System.Web;
 using System.Xml;
 using System.Xml.XPath;
 using NUnit.Framework;
@@ -17,7 +19,6 @@ namespace selenium.widget.v3.api.ChatServer
 
         public string RequestChatServerEndpoint(string login)
         {
-            //"http://balancer-cloud.global.livetex/?"
             var builder = new UriBuilder("http", Host, 80);
             builder.Query = $@"sender=operator&action=getserver&login={login}&protocol=0.1.0";
             using (var webClient = new WebClient())
@@ -48,13 +49,14 @@ namespace selenium.widget.v3.api.ChatServer
     [TestFixture]
     public class BalancerTest
     {
-        [Test]
-        public void GetChatServerEndpoint()
+        [TestCase("aleksey.v%40livetex.ru")]
+        [TestCase("aleksey.v@livetex.ru")]
+        public void GetChatServerEndpoint(string login)
         {
             // .Arrange
             var balancer = new Balancer("balancer-cloud.global.livetex");
             // .Act
-            string endPointUrl = balancer.RequestChatServerEndpoint("aleksey.v%40livetex.ru");
+            string endPointUrl = balancer.RequestChatServerEndpoint(login);
             // .Assert
             Assert.AreEqual(endPointUrl, "ws://action-1.unstable.livetex:19090");
         }
