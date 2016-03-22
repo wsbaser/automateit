@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Web.UI.WebControls;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using WebSocketSharp;
@@ -160,6 +161,15 @@ namespace selenium.widget.v3.api.ChatServer
 //            }
 //            throw new Exception("No connection");
 //        }
+        public void Disconnect()
+        {
+            _webSocket.Close();
+        }
+
+        public ChatServerResponse? GoOffline()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public struct ChatServerResponse
@@ -173,18 +183,31 @@ namespace selenium.widget.v3.api.ChatServer
     [TestFixture]
     public class OperatorTests
     {
+        private Operator _operator;
+
+        private ChatServerResponse? Authenticate(string login = "test1@test.test")
+        {
+            Balancer balancer = new Balancer("balancer-cloud.global.livetex");
+            _operator = new Operator(login, balancer);
+            return _operator.Authenticate("159236");
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _operator.Disconnect();
+        }
+
         [Test]
-        public void Authenticate()
+        public void SuccessfullAuthentication()
         {
             // .Arrange
-            var balancer = new Balancer("balancer-cloud.global.livetex");
-            var _operator = new Operator("test1@test.test", balancer);
             // .Act
-            ChatServerResponse? response = _operator.Authenticate("159236");
+            var response = Authenticate();
             // .Assert
             Assert.IsNotNull(response, "Chat Server did not respond");
             Assert.AreEqual(0, ((ChatServerResponse) response).errno, "Authentication error");
-            Assert.AreEqual("OK",((ChatServerResponse) response).errtext, "Authentication error");
+            Assert.AreEqual("OK", ((ChatServerResponse) response).errtext, "Authentication error");
             Assert.AreEqual("chat_list", ((ChatServerResponse) response).response, "Invalid response");
         }
     }
