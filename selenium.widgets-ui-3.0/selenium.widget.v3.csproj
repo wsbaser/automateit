@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="api\Apiv2\Apiv2.cs" />
     <Compile Include="api\ChatServer\Balancer.cs" />
     <Compile Include="api\ChatServer\Operator.cs" />
     <Compile Include="tests\NamespaceSetup.cs" />
