@@ -6,7 +6,7 @@
 //using NUnit.Framework;
 //using core;
 //
-//namespace selenium.core.Auxiliary {
+//namespace Selenium.Core.Auxiliary {
 //    public class MailClient {
 //        private readonly string _host;
 //        private readonly int _port;

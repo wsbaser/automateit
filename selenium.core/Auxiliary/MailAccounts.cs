@@ -1,7 +1,7 @@
 //using System.Xml;
 //using System.Xml.XPath;
 //
-//namespace selenium.core.Auxiliary {
+//namespace Selenium.Core.Auxiliary {
 //    public static class MailAccounts {
 //        private static readonly XPathNavigator _doc;
 //

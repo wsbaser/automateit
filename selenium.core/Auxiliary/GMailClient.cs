@@ -1,4 +1,4 @@
-﻿//namespace selenium.core.Auxiliary {
+﻿//namespace Selenium.Core.Auxiliary {
 //    public class GMailClient : MailClient {
 //        public GMailClient()
 //            : base("imap.gmail.com", 993, true) {

@@ -1,20 +1,31 @@
-namespace selenium.core.Framework.PageElements {
-    public sealed class SimpleWebComponentAttribute : FindsByAttribute, IComponentAttribute {
+namespace Selenium.Core.Framework.PageElements
+{
+    public sealed class SimpleWebComponentAttribute : FindsByAttribute, IComponentAttribute
+    {
         private string _componentName;
 
-        public string ComponentName {
-            get {
-                return string.IsNullOrEmpty(_componentName) && !string.IsNullOrEmpty(LinkText)
-                           ? LinkText
-                           : _componentName;
+        public string ComponentName
+        {
+            get
+            {
+                return string.IsNullOrEmpty(this._componentName) && !string.IsNullOrEmpty(this.LinkText)
+                           ? this.LinkText
+                           : this._componentName;
             }
-            set { _componentName = value; }
+            set
+            {
+                this._componentName = value;
+            }
         }
 
         #region IComponentArgs Members
 
-        public object[] Args {
-            get { return new object[] {Finder}; }
+        public object[] Args
+        {
+            get
+            {
+                return new object[] { this.Finder };
+            }
         }
 
         #endregion

@@ -2,38 +2,45 @@
  * Created by VolkovA on 03.03.14.
  */
 
-using System;
-
-namespace selenium.core.Framework.Service {
-    public class BaseUrlInfo {
-        public BaseUrlInfo(String subDomain, String domain, String absolutePath) {
-            SubDomain = subDomain;
-            Domain = domain;
-            AbsolutePath = absolutePath;
+namespace Selenium.Core.Framework.Service
+{
+    public class BaseUrlInfo
+    {
+        public BaseUrlInfo(string subDomain, string domain, string absolutePath)
+        {
+            this.SubDomain = subDomain;
+            this.Domain = domain;
+            this.AbsolutePath = absolutePath;
         }
 
-        public string SubDomain { get; private set; }
-        public string Domain { get; private set; }
-        public string AbsolutePath { get; private set; }
+        public string SubDomain { get; }
 
-        public BaseUrlInfo ApplyActual(BaseUrlInfo baseUrlInfo) {
-            string subDomain = baseUrlInfo == null || string.IsNullOrEmpty(baseUrlInfo.SubDomain)
-                                   ? SubDomain
-                                   : baseUrlInfo.SubDomain;
-            string domain = baseUrlInfo == null || string.IsNullOrEmpty(baseUrlInfo.Domain)
-                                ? Domain
-                                : baseUrlInfo.Domain;
-            string absolutePath = baseUrlInfo == null || string.IsNullOrEmpty(baseUrlInfo.AbsolutePath)
-                                      ? AbsolutePath
-                                      : baseUrlInfo.AbsolutePath;
+        public string Domain { get; }
+
+        public string AbsolutePath { get; }
+
+        public BaseUrlInfo ApplyActual(BaseUrlInfo baseUrlInfo)
+        {
+            var subDomain = baseUrlInfo == null || string.IsNullOrEmpty(baseUrlInfo.SubDomain)
+                                ? this.SubDomain
+                                : baseUrlInfo.SubDomain;
+            var domain = baseUrlInfo == null || string.IsNullOrEmpty(baseUrlInfo.Domain)
+                             ? this.Domain
+                             : baseUrlInfo.Domain;
+            var absolutePath = baseUrlInfo == null || string.IsNullOrEmpty(baseUrlInfo.AbsolutePath)
+                                   ? this.AbsolutePath
+                                   : baseUrlInfo.AbsolutePath;
             return new BaseUrlInfo(subDomain, domain, absolutePath);
         }
 
         // Сформировать BaseUrl
-        public String GetBaseUrl() {
-            String s = Domain + AbsolutePath;
-            if (!String.IsNullOrEmpty(SubDomain))
-                s = SubDomain + "." + s;
+        public string GetBaseUrl()
+        {
+            var s = this.Domain + this.AbsolutePath;
+            if (!string.IsNullOrEmpty(this.SubDomain))
+            {
+                s = this.SubDomain + "." + s;
+            }
             return s;
         }
     }

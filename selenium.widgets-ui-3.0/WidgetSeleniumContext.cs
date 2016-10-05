@@ -1,9 +1,9 @@
-﻿using selenium.core;
-using selenium.core.Framework.Service;
-using selenium.widget.v3.service;
-
-namespace selenium.widget.v3
+﻿namespace Selenium.Widget.v3
 {
+    using Selenium.Core;
+    using Selenium.Core.Framework.Service;
+    using Selenium.Widget.v3.Service;
+
     public class WidgetSeleniumContext : SeleniumContext<WidgetSeleniumContext>
     {
         protected override void InitWeb()
@@ -18,5 +18,4 @@ namespace selenium.widget.v3
             }
         }
     }
-
 }

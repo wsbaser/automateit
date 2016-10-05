@@ -1,54 +1,70 @@
-using OpenQA.Selenium;
-using core;
-using selenium.core.Framework.Page;
-using selenium.core.SCSS;
+namespace Selenium.Core.Framework.PageElements
+{
+    using OpenQA.Selenium;
 
-namespace selenium.core.Framework.PageElements {
-    public abstract class ContainerBase : ComponentBase, IContainer {
+    using Selenium.Core.Framework.Page;
+    using Selenium.Core.SCSS;
+
+    public abstract class ContainerBase : ComponentBase, IContainer
+    {
         private string _rootScss;
 
-        protected virtual string RootScss {
-            get { return _rootScss ?? (_rootScss = "html"); }
-        }
-
-        protected By RootSelector {
-            get { return ScssBuilder.CreateBy(RootScss); }
-        }
-
         protected ContainerBase(IPage parent)
-            : this(parent, null) {
+            : this(parent, null)
+        {
         }
 
         protected ContainerBase(IPage parent, string rootScss)
-            : base(parent) {
-            _rootScss = rootScss;
+            : base(parent)
+        {
+            this._rootScss = rootScss;
         }
 
-        public override bool IsVisible() {
-            return Is.Visible(RootSelector);
+        protected virtual string RootScss
+        {
+            get
+            {
+                return this._rootScss ?? (this._rootScss = "html");
+            }
+        }
+
+        protected By RootSelector
+        {
+            get
+            {
+                return ScssBuilder.CreateBy(this.RootScss);
+            }
+        }
+
+        public override bool IsVisible()
+        {
+            return this.Is.Visible(this.RootSelector);
         }
 
         /// <summary>
-        /// Получает Scss для вложенного элемента
+        ///     Получает Scss для вложенного элемента
         /// </summary>
-        public string InnerScss(string relativeScss, params object[] args) {
+        public string InnerScss(string relativeScss, params object[] args)
+        {
             relativeScss = string.Format(relativeScss, args);
-            return ScssBuilder.Concat(RootScss, relativeScss).Value;
+            return ScssBuilder.Concat(this.RootScss, relativeScss).Value;
         }
 
         /// <summary>
-        /// Получает селектор для вложенного элемента
+        ///     Получает селектор для вложенного элемента
         /// </summary>
-        public By InnerSelector(string relativeScss, params object[] args) {
+        public By InnerSelector(string relativeScss, params object[] args)
+        {
             relativeScss = string.Format(relativeScss, args);
-            return ScssBuilder.Concat(RootScss, relativeScss).By;
+            return ScssBuilder.Concat(this.RootScss, relativeScss).By;
         }
 
         /// <summary>
-        /// Получает селектор для вложенного элемента
+        ///     Получает селектор для вложенного элемента
         /// </summary>
-        public By InnerSelector(Scss innerScss) {
-            Scss rootScss = ScssBuilder.Create(RootScss);
+        public By InnerSelector(Scss innerScss)
+        {
+            var rootScss = ScssBuilder.Create(this.RootScss);
             return rootScss.Concat(innerScss).By;
         }
     }

@@ -1,22 +1,29 @@
-/**
+﻿/**
 * Created by VolkovA on 27.02.14.
 */ // Методы для работы с алертами
 
-using OpenQA.Selenium;
+namespace Selenium.Core.Framework.Browser
+{
+    using OpenQA.Selenium;
 
-namespace selenium.core.Framework.Browser {
-    public class BrowserAlert : DriverFacade {
-        public BrowserAlert(Browser browser) : base(browser) {
+    public class BrowserAlert : DriverFacade
+    {
+        public BrowserAlert(Browser browser)
+            : base(browser)
+        {
         }
 
         /// <summary>
-        /// Получение системного алерта
+        ///     Получение системного алерта
         /// </summary>
-        public IAlert GetSystemAlert() {
-            try {
-                return Driver.SwitchTo().Alert();
+        public IAlert GetSystemAlert()
+        {
+            try
+            {
+                return this.Driver.SwitchTo().Alert();
             }
-            catch (NoAlertPresentException) {
+            catch (NoAlertPresentException)
+            {
                 return null;
             }
         }

@@ -1,30 +1,28 @@
-﻿using System;
-using System.Net;
-using System.Text;
-using System.Web;
-using System.Xml;
-using System.Xml.XPath;
-using NUnit.Framework;
-
-namespace selenium.widget.v3.api.ChatServer
+﻿namespace Selenium.Widget.v3.API.ChatServer
 {
+    using System;
+    using System.Net;
+    using System.Xml;
+
+    using NUnit.Framework;
+
     public class Balancer
     {
-        public string Host { get; }
-
         public Balancer(string host)
         {
-            Host = host;
+            this.Host = host;
         }
+
+        public string Host { get; }
 
         public string RequestChatServerEndpoint(string login)
         {
-            var builder = new UriBuilder("http", Host, 80);
+            var builder = new UriBuilder("http", this.Host, 80);
             builder.Query = $@"sender=operator&action=getserver&login={login}&protocol=0.1.0";
             using (var webClient = new WebClient())
             {
-                string responseXml = webClient.DownloadString(builder.Uri);
-                return ReadEndPoint(responseXml);
+                var responseXml = webClient.DownloadString(builder.Uri);
+                return this.ReadEndPoint(responseXml);
             }
         }
 
@@ -33,11 +31,13 @@ namespace selenium.widget.v3.api.ChatServer
             var doc = new XmlDocument();
             doc.LoadXml(balancerRresponseXml);
             var xPathNavigator = doc.CreateNavigator();
-            XPathNavigator ipNode = xPathNavigator.SelectSingleNode("//server_ip");
-            XPathNavigator portNode = xPathNavigator.SelectSingleNode("//server_port");
+            var ipNode = xPathNavigator.SelectSingleNode("//server_ip");
+            var portNode = xPathNavigator.SelectSingleNode("//server_port");
             if (ipNode == null || portNode == null)
+            {
                 return null;
-            return BuildEndPointUrl(ipNode.Value, portNode.Value);
+            }
+            return this.BuildEndPointUrl(ipNode.Value, portNode.Value);
         }
 
         private string BuildEndPointUrl(string ip, string port)
@@ -56,7 +56,7 @@ namespace selenium.widget.v3.api.ChatServer
             // .Arrange
             var balancer = new Balancer("balancer-cloud.global.livetex");
             // .Act
-            string endPointUrl = balancer.RequestChatServerEndpoint(login);
+            var endPointUrl = balancer.RequestChatServerEndpoint(login);
             // .Assert
             Assert.AreEqual(endPointUrl, "ws://action-1.unstable.livetex:19090");
         }

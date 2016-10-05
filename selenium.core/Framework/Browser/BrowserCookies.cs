@@ -1,13 +1,18 @@
-namespace selenium.core.Framework.Browser {
-    public class BrowserCookies:DriverFacade {
-        public BrowserCookies(Browser browser) : base(browser) {
+namespace Selenium.Core.Framework.Browser
+{
+    public class BrowserCookies : DriverFacade
+    {
+        public BrowserCookies(Browser browser)
+            : base(browser)
+        {
         }
 
         /// <summary>
-        /// Очистить все Cookie
+        ///     Очистить все Cookie
         /// </summary>
-        public void Clear() {
-            Driver.Manage().Cookies.DeleteAllCookies();
+        public void Clear()
+        {
+            this.Driver.Manage().Cookies.DeleteAllCookies();
         }
     }
 }

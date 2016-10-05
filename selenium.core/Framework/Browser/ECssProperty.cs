@@ -1,17 +1,22 @@
-using core.Extensions;
+namespace Selenium.Core.Framework.Browser
+{
+    using global::Core.Extensions;
 
-namespace selenium.core.Framework.Browser {
-    public enum ECssProperty {
+    public enum ECssProperty
+    {
         [StringValue("left")]
         left,
+
         [StringValue("top")]
         top,
+
         [StringValue("width")]
         width,
+
         [StringValue("height")]
         height,
+
         [StringValue("background-image")]
         background_image
-        
     }
 }

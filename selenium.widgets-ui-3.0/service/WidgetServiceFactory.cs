@@ -2,12 +2,13 @@
 * Created by VolkovA on 28.02.14.
 */
 
-using System.Collections.Generic;
-using selenium.core.Framework.Service;
-using selenium.widget.v3.service.pages;
-
-namespace selenium.widget.v3.service
+namespace Selenium.Widget.v3.Service
 {
+    using System.Collections.Generic;
+
+    using Selenium.Core.Framework.Service;
+    using Selenium.Widget.v3.Service.Pages;
+
     public class WidgetsServiceFactory : ServiceFactory
     {
         private const string DEV_DOMAIN = "wsbaser.github.io";
@@ -17,7 +18,7 @@ namespace selenium.widget.v3.service
         public Router createRouter()
         {
             var router = new SelfMatchingPagesRouter();
-            router.RegisterPage<PageWithWidget>();  // RegisterDerivedPages<PageWithWidget>();
+            router.RegisterPage<PageWithWidget>(); // RegisterDerivedPages<PageWithWidget>();
             return router;
         }
 
@@ -34,7 +35,7 @@ namespace selenium.widget.v3.service
 
         public Service createService()
         {
-            return new WidgetService(getDefaultBaseUrlInfo(), createBaseUrlPattern(), createRouter());
+            return new WidgetService(this.getDefaultBaseUrlInfo(), this.createBaseUrlPattern(), this.createRouter());
         }
 
         #endregion

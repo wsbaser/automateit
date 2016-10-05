@@ -1,7 +1,8 @@
-﻿using System;
-
-namespace selenium.core.Exceptions
+﻿namespace Selenium.Core.Exceptions
 {
-    public class NoVisibleElementsException : Exception {
+    using System;
+
+    public class NoVisibleElementsException : Exception
+    {
     }
 }

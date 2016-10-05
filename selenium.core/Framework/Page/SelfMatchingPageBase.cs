@@ -3,26 +3,35 @@
  * Базовый класс для страниц со статичным Url
  */
 
-using selenium.core.Framework.Service;
+namespace Selenium.Core.Framework.Page
+{
+    using Selenium.Core.Framework.Service;
 
-namespace selenium.core.Framework.Page {
-    public interface ISelfMatchingPage {
+    public interface ISelfMatchingPage
+    {
         UriMatchResult Match(RequestData requestData, BaseUrlInfo baseUrlInfo);
     }
 
-    public abstract class SelfMatchingPageBase : PageBase, ISelfMatchingPage {
+    public abstract class SelfMatchingPageBase : PageBase, ISelfMatchingPage
+    {
         public abstract string AbsolutePath { get; }
 
         #region ISelfMatchingPage Members
 
-        public virtual UriMatchResult Match(RequestData requestData, BaseUrlInfo baseUrlInfo) {
-            return new UriMatcher(AbsolutePath, Data, Params).Match(requestData.Url, baseUrlInfo.AbsolutePath);
+        public virtual UriMatchResult Match(RequestData requestData, BaseUrlInfo baseUrlInfo)
+        {
+            return new UriMatcher(this.AbsolutePath, this.Data, this.Params).Match(
+                requestData.Url,
+                baseUrlInfo.AbsolutePath);
         }
 
         #endregion
 
-        public virtual RequestData GetRequest(BaseUrlInfo defaultBaseUrlInfo) {
-            string url = new UriAssembler(BaseUrlInfo, AbsolutePath, Data, Params).Assemble(defaultBaseUrlInfo);
+        public virtual RequestData GetRequest(BaseUrlInfo defaultBaseUrlInfo)
+        {
+            var url =
+                new UriAssembler(this.BaseUrlInfo, this.AbsolutePath, this.Data, this.Params).Assemble(
+                    defaultBaseUrlInfo);
             return new RequestData(url);
         }
     }

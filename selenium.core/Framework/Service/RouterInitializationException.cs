@@ -1,9 +1,12 @@
-using System;
+namespace Selenium.Core.Framework.Service
+{
+    using System;
 
-namespace selenium.core.Framework.Service {
-    public class RouterInitializationException : Exception {
+    public class RouterInitializationException : Exception
+    {
         public RouterInitializationException(Exception cause)
-            : base("Error in router initialization", cause) {
+            : base("Error in router initialization", cause)
+        {
         }
     }
 }

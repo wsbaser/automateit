@@ -2,115 +2,146 @@
  * Created by VolkovA on 26.02.14.
  */
 
-using System;
-using OpenQA.Selenium;
-using selenium.core.Framework.Service;
-using selenium.core.Logging;
+namespace Selenium.Core.Framework.Browser
+{
+    using System;
 
-namespace selenium.core.Framework.Browser {
-    public class Browser {
-        public BrowserOptions Options = new BrowserOptions();
+    using OpenQA.Selenium;
+
+    using Selenium.Core.Framework.Service;
+    using Selenium.Core.Logging;
+
+    public class Browser
+    {
         private readonly DriverManager _driverManager;
 
         public readonly BrowserAction Action;
+
         public readonly BrowserAlert Alert;
+
         public readonly BrowserFind Find;
+
         public readonly BrowserGet Get;
+
         public readonly BrowserGo Go;
+
         public readonly BrowserIs Is;
-        public readonly BrowserState State;
-        public readonly BrowserWait Wait;
+
         public readonly BrowserJs Js;
-        public BrowserWindow Window;
+
+        public readonly BrowserState State;
+
+        public readonly BrowserWait Wait;
+
         public BrowserCookies Cookies;
 
-        public Browser(Web web, ITestLogger log, DriverManager driverManager) {
-            Web = web;
-            Log = log;
-            _driverManager = driverManager;
-            _driverManager.InitDriver();
-            Driver = _driverManager.GetDriver();
-            Find = new BrowserFind(this);
-            Get = new BrowserGet(this);
-            Is = new BrowserIs(this);
-            Alert = new BrowserAlert(this);
-            State = new BrowserState(this);
-            Action = new BrowserAction(this);
-            Window = new BrowserWindow(this);
-            Go = new BrowserGo(this);
-            Wait = new BrowserWait(this);
-            Js = new BrowserJs(this);
-            Cookies = new BrowserCookies(this);
+        public BrowserOptions Options = new BrowserOptions();
+
+        public BrowserWindow Window;
+
+        public Browser(Web web, ITestLogger log, DriverManager driverManager)
+        {
+            this.Web = web;
+            this.Log = log;
+            this._driverManager = driverManager;
+            this._driverManager.InitDriver();
+            this.Driver = this._driverManager.GetDriver();
+            this.Find = new BrowserFind(this);
+            this.Get = new BrowserGet(this);
+            this.Is = new BrowserIs(this);
+            this.Alert = new BrowserAlert(this);
+            this.State = new BrowserState(this);
+            this.Action = new BrowserAction(this);
+            this.Window = new BrowserWindow(this);
+            this.Go = new BrowserGo(this);
+            this.Wait = new BrowserWait(this);
+            this.Js = new BrowserJs(this);
+            this.Cookies = new BrowserCookies(this);
         }
 
         public ITestLogger Log { get; private set; }
+
         public Web Web { get; private set; }
-        public IWebDriver Driver { get; private set; }
+
+        public IWebDriver Driver { get; }
 
         // Уничтожить драйвер(закрывает все открытые окна браузер)
-        public void Destroy() {
-            _driverManager.DestroyDriver();
+        public void Destroy()
+        {
+            this._driverManager.DestroyDriver();
         }
 
         // Пересоздать драйвер
-        public void Recreate() {
+        public void Recreate()
+        {
         }
 
-        public void DisableTimeout() {
-            Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(0));
+        public void DisableTimeout()
+        {
+            this.Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(0));
         }
 
-        public void EnableTimeout() {
-            Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(BrowserTimeouts.FIND));
+        public void EnableTimeout()
+        {
+            this.Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(BrowserTimeouts.FIND));
         }
 
-        public void WithOptions(Action action, bool findSingle = BrowserOptions.FINDSINGLE_DEFAULT) {
-            var memento = (BrowserOptions) Options.Clone();
-            Options.FindSingle = findSingle;
+        public void WithOptions(Action action, bool findSingle = BrowserOptions.FINDSINGLE_DEFAULT)
+        {
+            var memento = (BrowserOptions)this.Options.Clone();
+            this.Options.FindSingle = findSingle;
             action.Invoke();
-            Options = memento;
+            this.Options = memento;
         }
     }
 
-    public class BrowserOptions{
+    public class BrowserOptions
+    {
         /// <summary>
-        /// Если при поиске элемента по селектору найдено несколько кидать исключение
+        ///     Если при поиске элемента по селектору найдено несколько кидать исключение
         /// </summary>
         public const bool FINDSINGLE_DEFAULT = true;
 
         /// <summary>
-        /// Ожидать завершения Ajax запросов перед выполнением клика
+        ///     Ожидать завершения Ajax запросов перед выполнением клика
         /// </summary>
         public const bool WAIT_WHILE_AJAX_BEFORE_CLICK = true;
 
         public bool FindSingle = FINDSINGLE_DEFAULT;
+
         public bool WaitWhileAjaxBeforeClick = WAIT_WHILE_AJAX_BEFORE_CLICK;
 
-        public object Clone() {
-            var options = new BrowserOptions {
-                                                 FindSingle = FindSingle,
-                                                 WaitWhileAjaxBeforeClick = WaitWhileAjaxBeforeClick
-                                             };
+        public object Clone()
+        {
+            var options = new BrowserOptions
+                              {
+                                  FindSingle = this.FindSingle,
+                                  WaitWhileAjaxBeforeClick = this.WaitWhileAjaxBeforeClick
+                              };
             return options;
         }
     }
 
-    public static class BrowserTimeouts {
+    public static class BrowserTimeouts
+    {
         /// <summary>
-        /// Иногда после выполнения некоторого действия страница подвисает и просто ничего не происходит.
-        /// Данное значение определяет максимальное время ожидания пока отрабатывает Java Script
+        ///     Иногда после выполнения некоторого действия страница подвисает и просто ничего не происходит.
+        ///     Данное значение определяет максимальное время ожидания пока отрабатывает Java Script
         /// </summary>
         public const int JS = 10;
+
         /// <summary>
-        /// Таймаут ожидания при поиске элемента по умолчанию
+        ///     Таймаут ожидания при поиске элемента по умолчанию
         /// </summary>
         public const int FIND = 10;
+
         /// <summary>
-        /// Таймаут ожидания пока отображается прогресс
+        ///     Таймаут ожидания пока отображается прогресс
         /// </summary>
         public const int AJAX = 30;
+
         /// <summary>
-        /// Таймаут ожидания пока подгружаются компоненты страницы
+        ///     Таймаут ожидания пока подгружаются компоненты страницы
         /// </summary>
         public const int PAGE_LOAD = 30;
     }

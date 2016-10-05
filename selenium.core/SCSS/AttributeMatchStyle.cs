@@ -1,9 +1,12 @@
-using core.Extensions;
+namespace Selenium.Core.SCSS
+{
+    using global::Core.Extensions;
 
-namespace selenium.core.SCSS {
-    internal enum AttributeMatchStyle {
+    internal enum AttributeMatchStyle
+    {
         [StringValue("=")]
         Equal,
+
         [StringValue("~")]
         Contains
     }

@@ -1,8 +1,8 @@
 //using System.Threading;
 //using NUnit.Framework;
-//using selenium.core.Exceptions;
+//using Selenium.Core.Exceptions;
 //
-//namespace selenium.core.Auxiliary {
+//namespace Selenium.Core.Auxiliary {
 //    public class MailHelper {
 //        public static void DeleteMessages(string email) {
 //            var password = MailAccounts.GetPassword(email);

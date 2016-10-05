@@ -1,20 +1,25 @@
-using System;
+namespace Selenium.Core.Framework.Page
+{
+    using System;
 
-namespace selenium.core.Framework.Page {
-    public abstract class AlertBase : ComponentBase, IHtmlAlert {
+    public abstract class AlertBase : ComponentBase, IHtmlAlert
+    {
         protected AlertBase(IPage parent)
-            : base(parent) {
+            : base(parent)
+        {
         }
 
         #region IHtmlAlert Members
 
         public abstract void Dismiss();
 
-        public virtual void Accept() {
-            Dismiss();
+        public virtual void Accept()
+        {
+            this.Dismiss();
         }
 
-        public virtual void SendKeys(string keysToSend) {
+        public virtual void SendKeys(string keysToSend)
+        {
             throw new NotImplementedException();
         }
 
@@ -23,8 +28,12 @@ namespace selenium.core.Framework.Page {
             throw new NotImplementedException();
         }
 
-        public virtual string Text {
-            get { return GetType().Name; }
+        public virtual string Text
+        {
+            get
+            {
+                return this.GetType().Name;
+            }
         }
 
         #endregion

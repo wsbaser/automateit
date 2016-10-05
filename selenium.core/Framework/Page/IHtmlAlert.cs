@@ -1,6 +1,8 @@
-using OpenQA.Selenium;
+namespace Selenium.Core.Framework.Page
+{
+    using OpenQA.Selenium;
 
-namespace selenium.core.Framework.Page {
-    public interface IHtmlAlert : IAlert, IComponent {
+    public interface IHtmlAlert : IAlert, IComponent
+    {
     }
 }
