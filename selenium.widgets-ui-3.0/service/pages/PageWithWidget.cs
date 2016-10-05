@@ -1,13 +1,16 @@
-﻿using selenium.core.Framework.Page;
-using selenium.core.Framework.PageElements;
-
-namespace selenium.widget.v3.service.pages
+﻿namespace Selenium.Widget.v3.Service.Pages
 {
+    using Selenium.Core.Framework.Page;
+    using Selenium.Core.Framework.PageElements;
+
     public class PageWithWidget : SelfMatchingPageBase
     {
         public override string AbsolutePath
         {
-            get { return ""; }
+            get
+            {
+                return "";
+            }
         }
 
         [WebComponent(".lt-label")]

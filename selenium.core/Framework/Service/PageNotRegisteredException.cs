@@ -1,11 +1,14 @@
-using System;
-using selenium.core.Framework.Page;
+namespace Selenium.Core.Framework.Service
+{
+    using System;
 
-namespace selenium.core.Framework.Service {
+    using Selenium.Core.Framework.Page;
+
     public class PageNotRegisteredException : Exception
     {
         public PageNotRegisteredException(IPage page)
-            : base(string.Format("There are not services with registered page of type {0}", page.GetType().Name)) {
+            : base(string.Format("There are not services with registered page of type {0}", page.GetType().Name))
+        {
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿using selenium.core.Framework.Service;
-
-namespace selenium.widget.v3.service
+﻿namespace Selenium.Widget.v3.Service
 {
+    using Selenium.Core.Framework.Service;
+
     internal class WidgetService : ServiceImpl
     {
         public WidgetService(BaseUrlInfo defaultBaseUrlInfo, BaseUrlPattern pattern, Router router)

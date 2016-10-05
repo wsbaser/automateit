@@ -2,20 +2,24 @@
  * Created by VolkovA on 26.02.14.
  */
 
-using selenium.core.Framework.Browser;
-using selenium.core.Framework.Page;
-using selenium.core.Logging;
+namespace Selenium.Core.Tests
+{
+    using Selenium.Core.Framework.Browser;
+    using Selenium.Core.Framework.Page;
+    using Selenium.Core.Logging;
 
-namespace selenium.core.Tests {
-    public abstract class TestBase<P> where P : IPage {
+    public abstract class TestBase<P>
+        where P : IPage
+    {
         protected P Page { get; set; }
 
         protected abstract Browser Browser { get; }
 
         protected abstract ITestLogger Log { get; }
 
-        protected void up() {
-            Page = Browser.State.PageAs<P>();
+        protected void up()
+        {
+            this.Page = this.Browser.State.PageAs<P>();
         }
     }
 }

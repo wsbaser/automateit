@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "selenium.core", "selenium.core\selenium.core.csproj", "{0B0FB4E5-F25E-49F1-8A19-A684AAD5A671}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selenium.Core", "Selenium.Core\Selenium.Core.csproj", "{0B0FB4E5-F25E-49F1-8A19-A684AAD5A671}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "selenium.core.tests", "selenium.core.tests\selenium.core.tests.csproj", "{FD4A8A5C-0F85-45F1-A582-C818E72A410A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selenium.Core.Tests", "Selenium.Core.Tests\Selenium.Core.Tests.csproj", "{FD4A8A5C-0F85-45F1-A582-C818E72A410A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "core", "core\core.csproj", "{F04B3CF0-797A-4515-BA27-79787ABC66B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{F04B3CF0-797A-4515-BA27-79787ABC66B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "selenium.widget.v3", "selenium.widgets-ui-3.0\selenium.widget.v3.csproj", "{7F9A22FA-DFF6-43EF-98CB-7F40DCBA9191}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selenium.Widget.v3", "Selenium.Widgets-Ui-3.0\Selenium.Widget.v3.csproj", "{7F9A22FA-DFF6-43EF-98CB-7F40DCBA9191}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

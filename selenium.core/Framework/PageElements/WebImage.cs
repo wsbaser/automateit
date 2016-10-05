@@ -1,16 +1,22 @@
-using OpenQA.Selenium;
-using selenium.core.Framework.Page;
+namespace Selenium.Core.Framework.PageElements
+{
+    using OpenQA.Selenium;
 
-namespace selenium.core.Framework.PageElements {
-    public class WebImage:SimpleWebComponent {
-        public WebImage(IPage parent, By @by) : base(parent, @by) {
+    using Selenium.Core.Framework.Page;
+
+    public class WebImage : SimpleWebComponent
+    {
+        public WebImage(IPage parent, By @by)
+            : base(parent, @by)
+        {
         }
 
         /// <summary>
-        /// Получает имя файла из атрибута src элемента img
+        ///     Получает имя файла из атрибута src элемента img
         /// </summary>
-        public string GetFileName() {
-            return Get.ImgFileName(By);
+        public string GetFileName()
+        {
+            return this.Get.ImgFileName(this.By);
         }
     }
 }

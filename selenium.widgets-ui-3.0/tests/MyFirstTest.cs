@@ -1,13 +1,14 @@
-﻿using NUnit.Framework;
-using selenium.widget.v3.service.pages;
-using selenium.widget.v3.tests.@base;
-
-namespace selenium.widget.v3.tests
+﻿namespace Selenium.Widget.v3.tests
 {
+    using NUnit.Framework;
+
+    using Selenium.Widget.v3.Service.Pages;
+    using Selenium.Widget.v3.Tests;
+    using Selenium.Widget.v3.Tests.Base;
+
     [TestFixture]
     public class MyFirstTest : PageWithWidgetTestBase<PageWithWidget>
     {
-
         public void SetUp()
         {
             //        InvitationHelper inviteHelper = new InvitationHelper();
@@ -17,11 +18,11 @@ namespace selenium.widget.v3.tests
             //        offlineHelper.setOfflineContactType(CONTACT_EMAIL_AND_PHONE, REQUIRED_EMAIL);
         }
 
-        [Test, TestCaseSource(typeof (Mother), "VALID_EMAILS")]
+        [Test, TestCaseSource(typeof(Mother), "VALID_EMAILS")]
         public void SendValidEmail(string email)
         {
             // . Arrange
-            var page = GoToPageWithWidget(117166);
+            var page = this.GoToPageWithWidget(117166);
             // . Act
             //page.WidgetLabel
             // . Assert

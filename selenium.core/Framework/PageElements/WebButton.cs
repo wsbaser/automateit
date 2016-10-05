@@ -1,37 +1,45 @@
-﻿using System;
-using OpenQA.Selenium;
-using selenium.core.Framework.Page;
+﻿namespace Selenium.Core.Framework.PageElements
+{
+    using OpenQA.Selenium;
 
-namespace selenium.core.Framework.PageElements {
-    public class WebButton : SimpleWebComponent, IClickable {
-        public WebButton(IPage parent,By by) : base(parent, by) {
+    using Selenium.Core.Framework.Page;
+
+    public class WebButton : SimpleWebComponent, IClickable
+    {
+        public WebButton(IPage parent, By by)
+            : base(parent, by)
+        {
         }
 
         #region IClickable Members
 
         /// <summary>
-        /// Выполнить клик по кнопке
+        ///     Выполнить клик по кнопке
         /// </summary>
-        public void Click(int sleepTimeout=0) {
-            Log.Action("Клик по кнопке '{0}'", ComponentName);
-            Action.Click(By, sleepTimeout);
+        public void Click(int sleepTimeout = 0)
+        {
+            this.Log.Action("Клик по кнопке '{0}'", this.ComponentName);
+            this.Action.Click(this.By, sleepTimeout);
         }
 
         #endregion
 
-        public void ClickAndWaitWhileAjax(int sleepTimeout=0,bool ajaxInevitable=false) {
-            Log.Action("Клик по кнопке '{0}'", ComponentName);
-            Action.ClickAndWaitWhileAjax(By, sleepTimeout, ajaxInevitable);
+        public void ClickAndWaitWhileAjax(int sleepTimeout = 0, bool ajaxInevitable = false)
+        {
+            this.Log.Action("Клик по кнопке '{0}'", this.ComponentName);
+            this.Action.ClickAndWaitWhileAjax(this.By, sleepTimeout, ajaxInevitable);
         }
 
-        public void ClickAndWaitForRedirect() {
-            Log.Action("Клик по кнопке '{0}'", ComponentName);
-            Action.ClickAndWaitForRedirect(By);
+        public void ClickAndWaitForRedirect()
+        {
+            this.Log.Action("Клик по кнопке '{0}'", this.ComponentName);
+            this.Action.ClickAndWaitForRedirect(this.By);
         }
 
-        public void ClickAndWaitWhileProgress() {
-            Log.Action("Клик по кнопке '{0}'", ComponentName);
-            Action.ClickAndWaitWhileProgress(By, 1000);
+        public void ClickAndWaitWhileProgress()
+        {
+            this.Log.Action("Клик по кнопке '{0}'", this.ComponentName);
+            this.Action.ClickAndWaitWhileProgress(this.By, 1000);
         }
     }
 }

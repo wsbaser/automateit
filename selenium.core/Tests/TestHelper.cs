@@ -1,29 +1,38 @@
-using System;
-using NUnit.Framework;
-using selenium.core.Framework.Browser;
+namespace Selenium.Core.Tests
+{
+    using System;
 
-namespace selenium.core.Tests {
-    public class TestHelper {
+    using NUnit.Framework;
+
+    using Selenium.Core.Framework.Browser;
+
+    public class TestHelper
+    {
         /// <summary>
-        /// Выполняет указанное действие
-        /// Любой возникший при этом Exception преобразовывает в AssertException
+        ///     Выполняет указанное действие
+        ///     Любой возникший при этом Exception преобразовывает в AssertException
         /// </summary>
-        public static void AssertAction(Action action, string msg, params object[] args) {
-            try {
+        public static void AssertAction(Action action, string msg, params object[] args)
+        {
+            try
+            {
                 action.Invoke();
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 throw new AssertionException(string.Format(msg, args), e);
             }
         }
 
         /// <summary>
-        /// Проверяет что в обработчике кнопки есть вызов window.print()
+        ///     Проверяет что в обработчике кнопки есть вызов window.print()
         /// </summary>
-        public static void AssertHasPrintAction(ISeleniumContext context, string css) {
+        public static void AssertHasPrintAction(ISeleniumContext context, string css)
+        {
             var clickHandlers = context.Browser.Js.GetEventHandlers(css, JsEventType.click);
-            Assert.IsTrue(clickHandlers.Contains("window.print()"),
-                          "Обработчик клика по элементу '{0}' не содержит вызова window.print()");
+            Assert.IsTrue(
+                clickHandlers.Contains("window.print()"),
+                "Обработчик клика по элементу '{0}' не содержит вызова window.print()");
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace selenium.core {
-    public class Class1 {
+﻿namespace Selenium.Core
+{
+    public class Class1
+    {
     }
 }

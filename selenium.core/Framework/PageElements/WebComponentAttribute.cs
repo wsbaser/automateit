@@ -1,14 +1,18 @@
-using System;
+namespace Selenium.Core.Framework.PageElements
+{
+    using System;
 
-namespace selenium.core.Framework.PageElements {
-    public class WebComponentAttribute : Attribute, IComponentAttribute {
-        public WebComponentAttribute(params object[] args) {
-            Args = args;
+    public class WebComponentAttribute : Attribute, IComponentAttribute
+    {
+        public WebComponentAttribute(params object[] args)
+        {
+            this.Args = args;
         }
 
         #region IComponentArgs Members
 
-        public object[] Args { get; private set; }
+        public object[] Args { get; }
+
         public string ComponentName { get; set; }
 
         #endregion

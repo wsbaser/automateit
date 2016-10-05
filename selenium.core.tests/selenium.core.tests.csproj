@@ -7,8 +7,8 @@
     <ProjectGuid>{FD4A8A5C-0F85-45F1-A582-C818E72A410A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>selenium.core.tests</RootNamespace>
-    <AssemblyName>selenium.core.tests</AssemblyName>
+    <RootNamespace>Selenium.Core.Tests</RootNamespace>
+    <AssemblyName>Selenium.Core.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -46,13 +46,13 @@
     <Compile Include="UriMatcherTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\selenium.core\selenium.core.csproj">
+    <ProjectReference Include="..\Selenium.Core\Selenium.Core.csproj">
       <Project>{0B0FB4E5-F25E-49F1-8A19-A684AAD5A671}</Project>
-      <Name>selenium.core</Name>
+      <Name>Selenium.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="Packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

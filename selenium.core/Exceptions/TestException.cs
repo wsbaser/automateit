@@ -1,8 +1,12 @@
-using System;
+namespace Selenium.Core.Exceptions
+{
+    using System;
 
-namespace selenium.core.Exceptions {
-    public class TestException:Exception {
-        public TestException(string message) : base(message) {
+    public class TestException : Exception
+    {
+        public TestException(string message)
+            : base(message)
+        {
         }
     }
 }

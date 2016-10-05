@@ -1,11 +1,15 @@
-using selenium.core.Framework.Browser;
-using selenium.core.Framework.Service;
-using selenium.core.Logging;
+namespace Selenium.Core
+{
+    using Selenium.Core.Framework.Browser;
+    using Selenium.Core.Framework.Service;
+    using Selenium.Core.Logging;
 
-namespace selenium.core {
-    public interface ISeleniumContext {
+    public interface ISeleniumContext
+    {
         Web Web { get; }
+
         ITestLogger Log { get; }
+
         Browser Browser { get; }
     }
 }

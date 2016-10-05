@@ -1,119 +1,150 @@
-/**
+﻿/**
 * Created by VolkovA on 27.02.14.
 */ // Текущее состояние браузера
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using OpenQA.Selenium;
-using selenium.core.Framework.Page;
-using selenium.core.Framework.Service;
+namespace Selenium.Core.Framework.Browser
+{
+    using System.Collections.Generic;
+    using System.Linq;
 
-namespace selenium.core.Framework.Browser {
-    public class BrowserState : DriverFacade {
-        // Объект для работы со страницей в активном окне браузера
-        public IPage Page;
+    using OpenQA.Selenium;
+
+    using Selenium.Core.Framework.Page;
+    using Selenium.Core.Framework.Service;
+
+    public class BrowserState : DriverFacade
+    {
+        /// <summary>
+        ///     Идентификатор текущего окна
+        /// </summary>
+        public string CurrentWindowHandle;
 
         // Объект для работы с html имитацией алерта, отображаемой в активной странице браузера
         public IAlert HtmlAlert;
 
+        // Объект для работы со страницей в активном окне браузера
+        public IPage Page;
+
         // Объект для работы с системным алертом, отображаемым в активной странице браузера
         public IAlert SystemAlert;
 
-        /// <summary>
-        /// Идентификатор текущего окна
-        /// </summary>
-        public string CurrentWindowHandle;
-
         public BrowserState(Browser browser)
-            : base(browser) {
+            : base(browser)
+        {
         }
 
-        public IAlert GetActiveAlert() {
-            return SystemAlert ?? HtmlAlert;
-        }
-
-        /// <summary>
-        /// Приведение текущего html алерта к указанному типу
-        /// </summary>
-        public T HtmlAlertAs<T>() {
-            return (T) HtmlAlert;
+        public IAlert GetActiveAlert()
+        {
+            return this.SystemAlert ?? this.HtmlAlert;
         }
 
         /// <summary>
-        /// Приведение текущего html алерта к указанному типу
+        ///     Приведение текущего html алерта к указанному типу
         /// </summary>
-        public bool HtmlAlertIs<T>() {
-            if (HtmlAlert == null)
+        public T HtmlAlertAs<T>()
+        {
+            return (T)this.HtmlAlert;
+        }
+
+        /// <summary>
+        ///     Приведение текущего html алерта к указанному типу
+        /// </summary>
+        public bool HtmlAlertIs<T>()
+        {
+            if (this.HtmlAlert == null)
+            {
                 return false;
-            return HtmlAlert is T;
+            }
+            return this.HtmlAlert is T;
         }
 
         // Приведение текущей страницы к нужному типу
-        public T PageAs<T>() {
-            return (T) Page;
+        public T PageAs<T>()
+        {
+            return (T)this.Page;
         }
 
         // Проверка соответствия класса текущей страницы указанному типу
-        public bool PageIs<T>() where T : IPage {
-            if (Page == null)
+        public bool PageIs<T>() where T : IPage
+        {
+            if (this.Page == null)
+            {
                 return false;
-            return Page is T;
+            }
+            return this.Page is T;
         }
 
         // Определение текущего состояния браузера
-        public void Actualize() {
-
-            ActualizeSystemAlert();
-            if (SystemAlert != null)
+        public void Actualize()
+        {
+            this.ActualizeSystemAlert();
+            if (this.SystemAlert != null)
+            {
                 return;
-            ActualizeWindow();
-            ActualizePage(new RequestData(Driver.Url,
-                                          new List<Cookie>(Driver.Manage().Cookies.AllCookies.AsEnumerable())));
-            ActualizeHtmlAlert();
+            }
+            this.ActualizeWindow();
+            this.ActualizePage(
+                new RequestData(
+                    this.Driver.Url,
+                    new List<Cookie>(this.Driver.Manage().Cookies.AllCookies.AsEnumerable())));
+            this.ActualizeHtmlAlert();
         }
 
         /// <summary>
-        /// Актуализация текущего окна
+        ///     Актуализация текущего окна
         /// </summary>
-        private void ActualizeWindow() {
-            if (Driver.WindowHandles.Last() != CurrentWindowHandle) {
-                Driver.SwitchTo().Window(Driver.WindowHandles.Last());
-                CurrentWindowHandle = Driver.CurrentWindowHandle;
+        private void ActualizeWindow()
+        {
+            if (this.Driver.WindowHandles.Last() != this.CurrentWindowHandle)
+            {
+                this.Driver.SwitchTo().Window(this.Driver.WindowHandles.Last());
+                this.CurrentWindowHandle = this.Driver.CurrentWindowHandle;
             }
         }
 
         /// <summary>
-        /// Актуализация Html алерта
+        ///     Актуализация Html алерта
         /// </summary>
-        public void ActualizeHtmlAlert() {
-            HtmlAlert = null;
-            if (Page == null)
+        public void ActualizeHtmlAlert()
+        {
+            this.HtmlAlert = null;
+            if (this.Page == null)
+            {
                 return;
-            HtmlAlert = Page.Alerts.FirstOrDefault(a => a.IsVisible());
+            }
+            this.HtmlAlert = this.Page.Alerts.FirstOrDefault(a => a.IsVisible());
         }
 
         /// <summary>
-        /// Актуализация системного алерта
+        ///     Актуализация системного алерта
         /// </summary>
-        private void ActualizeSystemAlert() {
-            SystemAlert = Browser.Alert.GetSystemAlert();
+        private void ActualizeSystemAlert()
+        {
+            this.SystemAlert = this.Browser.Alert.GetSystemAlert();
         }
 
         /// <summary>
-        /// Определение класса для работы с текущей активной страницей браузера
+        ///     Определение класса для работы с текущей активной страницей браузера
         /// </summary>
-        private void ActualizePage(RequestData requestData) {
-            Page = null;
+        private void ActualizePage(RequestData requestData)
+        {
+            this.Page = null;
             if (requestData.Url.IsFile)
-                Page = Web.GetEmailPage(requestData.Url);
-            else {
-                ServiceMatchResult result = Web.MatchService(requestData);
-                if (result != null)
-                    Page = result.getService().GetPage(requestData, result.getBaseUrlInfo());
+            {
+                this.Page = this.Web.GetEmailPage(requestData.Url);
             }
-            if (Page != null)
-                Page.Activate(Browser, Log);
+            else
+            {
+                var result = this.Web.MatchService(requestData);
+                if (result != null)
+                {
+                    this.Page = result.getService().GetPage(requestData, result.getBaseUrlInfo());
+                }
+            }
+            if (this.Page != null)
+            {
+                this.Page.Activate(this.Browser, this.Log);
+            }
         }
     }
 }

@@ -2,76 +2,125 @@
  * Created by VolkovA on 27.02.14.
  */
 
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using OpenQA.Selenium;
-using selenium.core.Framework.Browser;
-using selenium.core.Framework.Service;
-using selenium.core.Logging;
+namespace Selenium.Core.Framework.Page
+{
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
 
-namespace selenium.core.Framework.Page {
-    public abstract class PageBase : IPage {
-        public Browser.Browser Browser { get; private set; }
+    using OpenQA.Selenium;
+
+    using Selenium.Core.Framework.Browser;
+    using Selenium.Core.Framework.Service;
+    using Selenium.Core.Logging;
+
+    public abstract class PageBase : IPage
+    {
+        public Browser Browser { get; private set; }
 
         public ITestLogger Log { get; private set; }
 
-        public BrowserAction Action {
-            get { return Browser.Action; }
+        public BrowserAction Action
+        {
+            get
+            {
+                return this.Browser.Action;
+            }
         }
 
-        public BrowserAlert Alert {
-            get { return Browser.Alert; }
+        public BrowserAlert Alert
+        {
+            get
+            {
+                return this.Browser.Alert;
+            }
         }
 
-        public BrowserFind Find {
-            get { return Browser.Find; }
+        public BrowserFind Find
+        {
+            get
+            {
+                return this.Browser.Find;
+            }
         }
 
-        public BrowserGet Get {
-            get { return Browser.Get; }
+        public BrowserGet Get
+        {
+            get
+            {
+                return this.Browser.Get;
+            }
         }
 
-        public BrowserGo Go {
-            get { return Browser.Go; }
+        public BrowserGo Go
+        {
+            get
+            {
+                return this.Browser.Go;
+            }
         }
 
-        public BrowserIs Is {
-            get { return Browser.Is; }
+        public BrowserIs Is
+        {
+            get
+            {
+                return this.Browser.Is;
+            }
         }
 
-        public BrowserState State {
-            get { return Browser.State; }
+        public BrowserState State
+        {
+            get
+            {
+                return this.Browser.State;
+            }
         }
 
-        public BrowserWait Wait {
-            get { return Browser.Wait; }
+        public BrowserWait Wait
+        {
+            get
+            {
+                return this.Browser.Wait;
+            }
         }
 
-        public BrowserJs Js {
-            get { return Browser.Js; }
+        public BrowserJs Js
+        {
+            get
+            {
+                return this.Browser.Js;
+            }
         }
 
-        public BrowserWindow Window {
-            get { return Browser.Window; }
+        public BrowserWindow Window
+        {
+            get
+            {
+                return this.Browser.Window;
+            }
         }
 
-        BrowserCookies IPageObject.Cookies {
-            get { return Browser.Cookies; }
+        BrowserCookies IPageObject.Cookies
+        {
+            get
+            {
+                return this.Browser.Cookies;
+            }
         }
 
         #region IPage Members
 
         /// <summary>
-        /// Активизировать страницу
+        ///     Активизировать страницу
         /// </summary>
         /// <remarks>
-        /// Если страница активна, значит через нее можно работать с браузером
+        ///     Если страница активна, значит через нее можно работать с браузером
         /// </remarks>
-        public void Activate(Browser.Browser browser, ITestLogger log) {
-            Browser = browser;
-            Log = log;
-            Alerts = new List<IHtmlAlert>();
-            ProgressBars = new List<IProgressBar>();
+        public void Activate(Browser browser, ITestLogger log)
+        {
+            this.Browser = browser;
+            this.Log = log;
+            this.Alerts = new List<IHtmlAlert>();
+            this.ProgressBars = new List<IProgressBar>();
             WebPageBuilder.InitPage(this);
         }
 
@@ -87,22 +136,29 @@ namespace selenium.core.Framework.Page {
 
         public Dictionary<string, string> Data { get; set; }
 
-        public void RegisterComponent(IComponent component) {
+        public void RegisterComponent(IComponent component)
+        {
             if (component is IHtmlAlert)
-                Alerts.Add(component as IHtmlAlert);
+            {
+                this.Alerts.Add(component as IHtmlAlert);
+            }
             else if (component is IProgressBar)
-                ProgressBars.Add(component as IProgressBar);
+            {
+                this.ProgressBars.Add(component as IProgressBar);
+            }
         }
 
-        public T RegisterComponent<T>(string componentName, params object[] args) where T : IComponent {
-            var component = CreateComponent<T>(args);
-            RegisterComponent(component);
+        public T RegisterComponent<T>(string componentName, params object[] args) where T : IComponent
+        {
+            var component = this.CreateComponent<T>(args);
+            this.RegisterComponent(component);
             component.ComponentName = componentName;
             return component;
         }
 
-        public T CreateComponent<T>(params object[] args) where T : IComponent {
-            return (T) WebPageBuilder.CreateComponent<T>(this, args);
+        public T CreateComponent<T>(params object[] args) where T : IComponent
+        {
+            return (T)WebPageBuilder.CreateComponent<T>(this, args);
         }
 
         #endregion

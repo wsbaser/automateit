@@ -2,84 +2,89 @@
 * Created by VolkovA on 27.02.14.
 */ // Методы для навигации по страницам
 
-using System;
-using System.IO;
-using selenium.core.Framework.Page;
-using selenium.core.Framework.Service;
+namespace Selenium.Core.Framework.Browser
+{
+    using System;
+    using System.IO;
 
-namespace selenium.core.Framework.Browser {
-    public class BrowserGo : DriverFacade {
+    using Selenium.Core.Framework.Page;
+    using Selenium.Core.Framework.Service;
+
+    public class BrowserGo : DriverFacade
+    {
         public BrowserGo(Browser browser)
-            : base(browser) {
+            : base(browser)
+        {
         }
 
         // Определение Url, соответствующее классу страницы и переход на него
-        public T ToPage<T>() where T : IPage {
-            var pageInstance = (T) Activator.CreateInstance(typeof (T));
-            ToPage(pageInstance);
-            return Browser.State.PageAs<T>();
+        public T ToPage<T>() where T : IPage
+        {
+            var pageInstance = (T)Activator.CreateInstance(typeof(T));
+            this.ToPage(pageInstance);
+            return this.Browser.State.PageAs<T>();
         }
 
         // Определение Url, соответствующее классу страницы и переход на него
-        public void ToPage(IPage page) {
-            RequestData requestData = Web.GetRequestData(page);
-            ToUrl(requestData);
+        public void ToPage(IPage page)
+        {
+            var requestData = this.Web.GetRequestData(page);
+            this.ToUrl(requestData);
         }
 
-        public void ToUrl(String url) {
-            ToUrl(new RequestData(url));
+        public void ToUrl(string url)
+        {
+            this.ToUrl(new RequestData(url));
         }
 
         // Переход на указанный Url в текущем окне браузера
-        public void ToUrl(RequestData requestData) {
-            Log.Action("Navigating to url: {0}", requestData.Url);
-            Driver.Navigate().GoToUrl(requestData.Url);
-            Browser.State.Actualize();
-            Browser.Wait.WhileAjax();
+        public void ToUrl(RequestData requestData)
+        {
+            this.Log.Action("Navigating to url: {0}", requestData.Url);
+            this.Driver.Navigate().GoToUrl(requestData.Url);
+            this.Browser.State.Actualize();
+            this.Browser.Wait.WhileAjax();
         }
 
         /// <summary>
-        /// Сохранить исходный код страницы на диске и открыть страницу в браузере
+        ///     Сохранить исходный код страницы на диске и открыть страницу в браузере
         /// </summary>
         /// <typeparam name="T">Класс страницы</typeparam>
         /// <param name="html">Исходный код страницы</param>
-        public T ToHtml<T>(string html) where T : IPage {
+        public T ToHtml<T>(string html) where T : IPage
+        {
             // Сохраниить на диск
-            var type = typeof (T);
-            string fileName = type.Name + ".html";
-            string pagesFolder = Path.Combine(Directory.GetCurrentDirectory(), "SavedPages");
+            var type = typeof(T);
+            var fileName = type.Name + ".html";
+            var pagesFolder = Path.Combine(Directory.GetCurrentDirectory(), "SavedPages");
             if (!Directory.Exists(pagesFolder))
+            {
                 Directory.CreateDirectory(pagesFolder);
-            string filePath = Path.Combine(pagesFolder, fileName);
+            }
+            var filePath = Path.Combine(pagesFolder, fileName);
             File.WriteAllText(filePath, html);
 
             // Открыть в браузере
-            ToUrl("file://" + filePath);
+            this.ToUrl("file://" + filePath);
 
             // Создать соответствующий класс страницы
-            var page = (T) Activator.CreateInstance(type);
-            page.Activate(Browser, Log);
+            var page = (T)Activator.CreateInstance(type);
+            page.Activate(this.Browser, this.Log);
             return page;
         }
 
         /// <summary>
-        /// Найти письмо с указанным заголовком на указанном почтовом ящике.
-        /// Открыть текст письма в браузере
+        ///     Найти письмо с указанным заголовком на указанном почтовом ящике.
+        ///     Открыть текст письма в браузере
         /// </summary>
-//        public P ToEmail<P>(string email, string titlePattern) where P : IPage {
-//            string messageBody = MailHelper.GetMessage(email, titlePattern);
-//            if (string.IsNullOrEmpty(messageBody))
-//                Throw.FrameworkException("На '{0}' не пришло письмо активации");
-//            return Browser.Go.ToHtml<P>(messageBody);
-//        }
-
         /// <summary>
-        /// Вернуться на предыдущую страницу
+        ///     Вернуться на предыдущую страницу
         /// </summary>
-        public void Back() {
-            Driver.Navigate().Back();
-            Log.Action("Go.Back(). Result Url: {0}", Driver.Url);
-            Browser.State.Actualize();
+        public void Back()
+        {
+            this.Driver.Navigate().Back();
+            this.Log.Action("Go.Back(). Result Url: {0}", this.Driver.Url);
+            this.Browser.State.Actualize();
         }
     }
 }

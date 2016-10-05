@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
-
-namespace selenium.widget.v3.tests
+﻿namespace Selenium.Widget.v3.tests
 {
+    using NUnit.Framework;
+
     [SetUpFixture]
     public class NamespaceSetup
     {
-
         [OneTimeSetUp]
         public void AssemblyInit()
         {

@@ -7,8 +7,8 @@
     <ProjectGuid>{0B0FB4E5-F25E-49F1-8A19-A684AAD5A671}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>selenium.core</RootNamespace>
-    <AssemblyName>selenium.core</AssemblyName>
+    <RootNamespace>Selenium.Core</RootNamespace>
+    <AssemblyName>Selenium.Core</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -157,12 +157,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="Packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\core\core.csproj">
+    <ProjectReference Include="..\Core\Core.csproj">
       <Project>{F04B3CF0-797A-4515-BA27-79787ABC66B5}</Project>
-      <Name>core</Name>
+      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
