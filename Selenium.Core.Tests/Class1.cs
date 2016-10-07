@@ -1,4 +1,4 @@
-﻿namespace Selenium.Core.tests
+﻿namespace Selenium.Core.Tests
 {
     public class Class1
     {

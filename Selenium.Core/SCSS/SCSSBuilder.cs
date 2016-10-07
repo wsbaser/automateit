@@ -5,13 +5,12 @@
     using System.Linq;
     using System.Text.RegularExpressions;
 
+    using global::Core;
     using global::Core.Extensions;
 
     using NUnit.Framework;
 
     using OpenQA.Selenium;
-
-    using Сore;
 
     public class ScssBuilder
     {
