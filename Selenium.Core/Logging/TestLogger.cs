@@ -49,7 +49,7 @@ namespace Selenium.Core.Logging
 
         public void FatalError(string msg, Exception e)
         {
-            Log.Info(msg, e);
+            this.Info(msg, e);
             Console.WriteLine(msg);
         }
 

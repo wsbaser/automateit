@@ -9,6 +9,7 @@ namespace Selenium.Core.Tests
     using Selenium.Core.Framework.Page;
 
     [TestFixture]
+    [Ignore("Very important reason.")]
     public class UriMatcherTest
     {
         [Test]

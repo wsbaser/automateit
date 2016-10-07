@@ -86,6 +86,11 @@
             {
                 return obj is ClassA && (obj as ClassA).Field == this.Field;
             }
+
+            public override int GetHashCode()
+            {
+                return base.GetHashCode();
+            }
         }
 
         [Test]
