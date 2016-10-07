@@ -1,4 +1,4 @@
-﻿namespace Selenium.Widget.v3.tests
+﻿namespace Selenium.Widget.v3.Tests
 {
     using NUnit.Framework;
 

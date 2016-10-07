@@ -1,4 +1,4 @@
-namespace Selenium.Widget.v3.Tests
+namespace Selenium.Widget.v3.Mother
 {
     public static class Mother
     {
