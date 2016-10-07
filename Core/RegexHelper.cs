@@ -1,4 +1,4 @@
-namespace Ñore
+namespace Core
 {
     using System.Text.RegularExpressions;
 

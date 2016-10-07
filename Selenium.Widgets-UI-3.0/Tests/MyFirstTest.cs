@@ -1,9 +1,9 @@
-﻿namespace Selenium.Widget.v3.tests
+﻿namespace Selenium.Widget.v3.Tests
 {
     using NUnit.Framework;
 
+    using Selenium.Widget.v3.Mother;
     using Selenium.Widget.v3.Service.Pages;
-    using Selenium.Widget.v3.Tests;
     using Selenium.Widget.v3.Tests.Base;
 
     [TestFixture]

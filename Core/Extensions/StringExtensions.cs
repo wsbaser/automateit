@@ -2,8 +2,6 @@
 {
     using NUnit.Framework;
 
-    using Сore;
-
     public static class StringExtensions
     {
         public static string CutFirst(this string s)

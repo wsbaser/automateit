@@ -2,11 +2,11 @@ namespace Selenium.Core.SCSS
 {
     using System.Linq;
 
+    using global::Core;
+
     using NUnit.Framework;
 
     using OpenQA.Selenium;
-
-    using Ñore;
 
     public class Scss
     {
