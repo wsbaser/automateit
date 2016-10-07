@@ -70,7 +70,7 @@
     <Compile Include="Service\WidgetServiceFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Packages.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="API\EmployeeApi\" />
