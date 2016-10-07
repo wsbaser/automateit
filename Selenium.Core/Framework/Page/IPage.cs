@@ -18,7 +18,7 @@ namespace Selenium.Core.Framework.Page
         /// <summary>
         ///     Куки, имеющие влияние на содержимое страницы
         /// </summary>
-        List<Cookie> Cookies { get; set; }
+        new List<Cookie> Cookies { get; set; }
 
         /// <summary>
         ///     Данные, содержащиеся в Url
